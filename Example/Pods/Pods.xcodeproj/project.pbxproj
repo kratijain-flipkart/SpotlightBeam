@@ -14,9 +14,12 @@
 		90905B24267F872A868D84759C96A08A /* SpotlightBeam.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B1A111CD4E060B0018D6F6DDC4A5E3FE /* SpotlightBeam.bundle */; };
 		ACD6D123A22A03BC6528D4B01BE37CD7 /* SpotlightBeam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 564AE9E77EDE00E7FB8B4139B39C6BCA /* SpotlightBeam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBCE991C4989DDCB160449E9D17DE9FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		C6743794301849A3D1074A3DAE454D4C /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E09B8E80C49093B113BD1BEA53D929 /* ReplaceMe.m */; };
 		D3AFFBFB272E8550F59317D6E46BF766 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 		E64C22EE0660155F8EB4F6ED9BEAF568 /* Pods-SpotlightBeam_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B1D7F4D664A0308EDBEACF2C9CFD4F0 /* Pods-SpotlightBeam_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F41898391C20312600ADD167 /* SpotlightBeamManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F41898371C20312600ADD167 /* SpotlightBeamManager.h */; };
+		F418983A1C20312600ADD167 /* SpotlightBeamManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F41898381C20312600ADD167 /* SpotlightBeamManager.m */; };
+		F418983E1C20333300ADD167 /* SpotlightBeamConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = F418983C1C20333300ADD167 /* SpotlightBeamConstants.h */; };
+		F418983F1C20333300ADD167 /* SpotlightBeamConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F418983D1C20333300ADD167 /* SpotlightBeamConstants.m */; };
 		F491871FAF1FE04B0075901958B92425 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +77,10 @@
 		DC057CBDBF250C754421D7E79AA457F2 /* Pods-SpotlightBeam_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpotlightBeam_Tests-dummy.m"; sourceTree = "<group>"; };
 		E33AC8CE81C8056770D073AEBA15C1C0 /* SpotlightBeam-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpotlightBeam-prefix.pch"; sourceTree = "<group>"; };
 		F1F6C30D68FC0DC72ED889989A60E394 /* SpotlightBeam.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SpotlightBeam.xcconfig; sourceTree = "<group>"; };
-		F2E09B8E80C49093B113BD1BEA53D929 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ReplaceMe.m; sourceTree = "<group>"; };
+		F41898371C20312600ADD167 /* SpotlightBeamManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotlightBeamManager.h; sourceTree = "<group>"; };
+		F41898381C20312600ADD167 /* SpotlightBeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotlightBeamManager.m; sourceTree = "<group>"; };
+		F418983C1C20333300ADD167 /* SpotlightBeamConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotlightBeamConstants.h; sourceTree = "<group>"; };
+		F418983D1C20333300ADD167 /* SpotlightBeamConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotlightBeamConstants.m; sourceTree = "<group>"; };
 		F937C24958773EB721D999EBF6D0ADB2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FABF2521725E6D4FB483FDD6909F44E2 /* Pods-SpotlightBeam_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SpotlightBeam_Example-resources.sh"; sourceTree = "<group>"; };
 		FB6BDFD92847DBACFF606D1CCFBB7CA4 /* Pods-SpotlightBeam_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SpotlightBeam_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -223,7 +229,10 @@
 		C04FA759726AB7B3AE28F996B6ECC7E7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F2E09B8E80C49093B113BD1BEA53D929 /* ReplaceMe.m */,
+				F41898371C20312600ADD167 /* SpotlightBeamManager.h */,
+				F41898381C20312600ADD167 /* SpotlightBeamManager.m */,
+				F418983C1C20333300ADD167 /* SpotlightBeamConstants.h */,
+				F418983D1C20333300ADD167 /* SpotlightBeamConstants.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -253,7 +262,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41898391C20312600ADD167 /* SpotlightBeamManager.h in Headers */,
 				16EA3CC0EF9C7BB7CF2A42D418D7281E /* Pods-SpotlightBeam_Example-umbrella.h in Headers */,
+				F418983E1C20333300ADD167 /* SpotlightBeamConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +411,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F418983F1C20333300ADD167 /* SpotlightBeamConstants.m in Sources */,
 				8C2DCCA2EB7A5DF139F58BC8B7C701C2 /* Pods-SpotlightBeam_Example-dummy.m in Sources */,
+				F418983A1C20312600ADD167 /* SpotlightBeamManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +428,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6743794301849A3D1074A3DAE454D4C /* ReplaceMe.m in Sources */,
 				7F8F3A8845B0C28D3336081B31AC109F /* SpotlightBeam-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
