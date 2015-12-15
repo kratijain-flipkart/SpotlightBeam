@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SpotlightBeam"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "Pod for providing Spotlight Support with validation wrapper API for ios 9+"
   s.description      = <<-DESC
                        Provides API For Batch/Singular Creation/Deletion of Spotlight Indices with a layer of validation
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/kratijain-flipkart/SpotlightBeam"
   s.license          = 'MIT'
   s.author           = { "Krati Jain" => "krati.jain@flipkart.com" }
-  s.source           = { :git => "https://github.com/kratijain-flipkart/SpotlightBeam.git", :tag=>"0.1.0" }
+  s.source           = { :git => "https://github.com/kratijain-flipkart/SpotlightBeam.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
