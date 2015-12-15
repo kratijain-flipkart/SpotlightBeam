@@ -6,10 +6,10 @@
 //
 //
 
-#import "SpotlightManager.h"
-#import <CollaborativeShopping/FCConstants.h>
+#import "SpotlightBeamManager.h"
 #import <CoreSpotlight/CoreSpotlight.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import "SpotlightBeamConstants.h"
 
 static SpotlightBeamManager *sharedInstance;
 
@@ -18,7 +18,7 @@ static SpotlightBeamManager *sharedInstance;
 + (instancetype) getSharedInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[SpotlightManager alloc] init];
+        sharedInstance = [[SpotlightBeamManager alloc] init];
     });
     return sharedInstance;
 }
