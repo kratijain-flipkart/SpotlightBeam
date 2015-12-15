@@ -1,0 +1,6 @@
+framework module Pods_SpotlightBeam_Tests {
+  umbrella header "Pods-SpotlightBeam_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

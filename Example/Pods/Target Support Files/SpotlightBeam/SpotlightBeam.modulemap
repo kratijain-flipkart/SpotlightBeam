@@ -1,0 +1,6 @@
+framework module SpotlightBeam {
+  umbrella header "SpotlightBeam-umbrella.h"
+
+  export *
+  module * { export * }
+}

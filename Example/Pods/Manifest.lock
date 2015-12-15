@@ -1,0 +1,14 @@
+PODS:
+  - SpotlightBeam (0.1.0)
+
+DEPENDENCIES:
+  - SpotlightBeam (from `../`)
+
+EXTERNAL SOURCES:
+  SpotlightBeam:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SpotlightBeam: 9c37ae0b7f284e04f6ec22b1c331852062c50eca
+
+COCOAPODS: 0.39.0
