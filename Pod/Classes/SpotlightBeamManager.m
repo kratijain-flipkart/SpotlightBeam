@@ -30,9 +30,30 @@ static SpotlightBeamManager *sharedInstance;
     }
     return self;
 }
+/* SpotlightBeamManager listens to Notifications with Name @"CS_NOTIFICATION"
+ 
+ The dictionary sent with the notification should contain following keys:
+ 
+ action(NSString)
+ title(NSString),
+ unique_id(NSString if create/array if delete),
+ domain_id(NSString if create/array if delete),
+ 
+ desc(NSString,optional),
+ thumbnail(NSData,optional)
+ 
+ Refer to Constant.h for related constants for above keys
+ */
+-(void)startListeningToNotifications{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(spotlightNotificationReceived:)
+                                                 name:CS_NOTIFICATION
+                                               object:nil];
+}
 
 //prepares a valid CSSearchableIndex after validating the input
--(CSSearchableIndex *)prepareIndexWithTitle:(id)title andDescription:(id)description andUniqueID:(id)uniqueId andDomainID:(id)domainID andThumbnailData:(id)thumbnailData{
+-(CSSearchableItem *)prepareIndexWithTitle:(id)title andDescription:(id)description andUniqueID:(id)uniqueId andDomainID:(id)domainID andThumbnailData:(id)thumbnailData{
     
     CSSearchableItem *index = nil;
     

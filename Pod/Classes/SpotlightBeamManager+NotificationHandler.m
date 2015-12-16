@@ -11,29 +11,6 @@
 
 @implementation SpotlightBeamManager(NotificationHandler)
 
-
-/* SpotlightBeamManager listens to Notifications with Name @"CS_NOTIFICATION"
- 
- The dictionary sent with the notification should contain following keys:
- 
- action(NSString)
- title(NSString),
- unique_id(NSString if create/array if delete),
- domain_id(NSString if create/array if delete),
- 
- desc(NSString,optional),
- thumbnail(NSData,optional)
- 
- Refer to Constant.h for related constants for above keys
- */
--(void)startListeningToNotifications{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(spotlightNotificationReceived:)
-                                                 name:CS_NOTIFICATION
-                                               object:nil];
-}
-
 /* This notification should necessarily contain action(as either create_single/create_bulk/delete)
  * and optional completionHandler
  *
@@ -100,10 +77,10 @@
                 
                 NSDictionary *detailsDict = (NSDictionary *)indicesArray[i];
                 
-                CSSearchableIndex *index = [self prepareIndexWithTitle:[detailsDict objectForKey:CS_TITLE] andDescription:[detailsDict objectForKey:CS_DESC] andUniqueID:[detailsDict objectForKey:CS_UNIQ_ID_KEY] andDomainID:[detailsDict objectForKey:CS_DOMAIN_ID_KEY] andThumbnailData:[detailsDict objectForKey:CS_THUMBNAIL]];
+                CSSearchableItem *indexItem = [self prepareIndexWithTitle:[detailsDict objectForKey:CS_TITLE] andDescription:[detailsDict objectForKey:CS_DESC] andUniqueID:[detailsDict objectForKey:CS_UNIQ_ID_KEY] andDomainID:[detailsDict objectForKey:CS_DOMAIN_ID_KEY] andThumbnailData:[detailsDict objectForKey:CS_THUMBNAIL]];
                 
-                if (index) {
-                    [validIndicesArray addObject:index];
+                if (indexItem) {
+                    [validIndicesArray addObject:indexItem];
                 }else{
                     [invalidIndicesArray addObject:detailsDict];
                 }
@@ -136,11 +113,11 @@
 //validate input from notification and create single index, else report error
 -(void)handleSingleIndexCreationForDetailsDict:(NSDictionary *)userInfoDict{
     
-    CSSearchableIndex *index = [self prepareIndexWithTitle:[userInfoDict objectForKey:CS_TITLE] andDescription:[userInfoDict objectForKey:CS_DESC] andUniqueID:[userInfoDict objectForKey:CS_UNIQ_ID_KEY] andDomainID:[userInfoDict objectForKey:CS_DOMAIN_ID_KEY] andThumbnailData:[userInfoDict objectForKey:CS_THUMBNAIL]];
+    CSSearchableItem *indexItem = [self prepareIndexWithTitle:[userInfoDict objectForKey:CS_TITLE] andDescription:[userInfoDict objectForKey:CS_DESC] andUniqueID:[userInfoDict objectForKey:CS_UNIQ_ID_KEY] andDomainID:[userInfoDict objectForKey:CS_DOMAIN_ID_KEY] andThumbnailData:[userInfoDict objectForKey:CS_THUMBNAIL]];
     
-    if (index) {
+    if (indexItem) {
         //create index
-        [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:@[index] completionHandler:completionHandler];
+        [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:@[indexItem] completionHandler:completionHandler];
     }else{
         NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidIndexDictionaryError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
         completionHandler(error);
