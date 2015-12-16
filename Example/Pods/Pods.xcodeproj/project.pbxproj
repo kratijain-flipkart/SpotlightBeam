@@ -21,6 +21,10 @@
 		F418983E1C20333300ADD167 /* SpotlightBeamConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = F418983C1C20333300ADD167 /* SpotlightBeamConstants.h */; };
 		F418983F1C20333300ADD167 /* SpotlightBeamConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F418983D1C20333300ADD167 /* SpotlightBeamConstants.m */; };
 		F491871FAF1FE04B0075901958B92425 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		F4B16C3A1C218BDB00250E72 /* SpotlightErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = F4B16C381C218BDB00250E72 /* SpotlightErrors.h */; };
+		F4B16C3B1C218BDB00250E72 /* SpotlightErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B16C391C218BDB00250E72 /* SpotlightErrors.m */; };
+		F4B16C3E1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = F4B16C3C1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.h */; };
+		F4B16C3F1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F4B16C3D1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,10 @@
 		F41898381C20312600ADD167 /* SpotlightBeamManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotlightBeamManager.m; sourceTree = "<group>"; };
 		F418983C1C20333300ADD167 /* SpotlightBeamConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotlightBeamConstants.h; sourceTree = "<group>"; };
 		F418983D1C20333300ADD167 /* SpotlightBeamConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotlightBeamConstants.m; sourceTree = "<group>"; };
+		F4B16C381C218BDB00250E72 /* SpotlightErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotlightErrors.h; sourceTree = "<group>"; };
+		F4B16C391C218BDB00250E72 /* SpotlightErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotlightErrors.m; sourceTree = "<group>"; };
+		F4B16C3C1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpotlightBeamManager+NotificationHandler.h"; sourceTree = "<group>"; };
+		F4B16C3D1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpotlightBeamManager+NotificationHandler.m"; sourceTree = "<group>"; };
 		F937C24958773EB721D999EBF6D0ADB2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FABF2521725E6D4FB483FDD6909F44E2 /* Pods-SpotlightBeam_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SpotlightBeam_Example-resources.sh"; sourceTree = "<group>"; };
 		FB6BDFD92847DBACFF606D1CCFBB7CA4 /* Pods-SpotlightBeam_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SpotlightBeam_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -233,6 +241,10 @@
 				F41898381C20312600ADD167 /* SpotlightBeamManager.m */,
 				F418983C1C20333300ADD167 /* SpotlightBeamConstants.h */,
 				F418983D1C20333300ADD167 /* SpotlightBeamConstants.m */,
+				F4B16C381C218BDB00250E72 /* SpotlightErrors.h */,
+				F4B16C391C218BDB00250E72 /* SpotlightErrors.m */,
+				F4B16C3C1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.h */,
+				F4B16C3D1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -264,6 +276,8 @@
 			files = (
 				F41898391C20312600ADD167 /* SpotlightBeamManager.h in Headers */,
 				16EA3CC0EF9C7BB7CF2A42D418D7281E /* Pods-SpotlightBeam_Example-umbrella.h in Headers */,
+				F4B16C3A1C218BDB00250E72 /* SpotlightErrors.h in Headers */,
+				F4B16C3E1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.h in Headers */,
 				F418983E1C20333300ADD167 /* SpotlightBeamConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +428,8 @@
 				F418983F1C20333300ADD167 /* SpotlightBeamConstants.m in Sources */,
 				8C2DCCA2EB7A5DF139F58BC8B7C701C2 /* Pods-SpotlightBeam_Example-dummy.m in Sources */,
 				F418983A1C20312600ADD167 /* SpotlightBeamManager.m in Sources */,
+				F4B16C3F1C2196FB00250E72 /* SpotlightBeamManager+NotificationHandler.m in Sources */,
+				F4B16C3B1C218BDB00250E72 /* SpotlightErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
