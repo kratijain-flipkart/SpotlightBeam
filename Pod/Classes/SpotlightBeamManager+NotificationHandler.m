@@ -8,6 +8,9 @@
 
 #import "SpotlightBeamManager+NotificationHandler.h"
 #import "SpotlightErrors.h"
+#import "SpotlightBeamConstants.h"
+#import <CoreSpotlight/CoreSpotlight.h>
+#import <MobileCoreServices/UTCoreTypes.h>
 
 @implementation SpotlightBeamManager(NotificationHandler)
 
@@ -27,12 +30,12 @@
 -(void)spotlightNotificationReceived:(NSNotification *)notification{
     
     NSDictionary *userInfoDict = notification.userInfo;
+    void (^completionBlock)(NSError * __nullable error) = [userInfoDict objectForKey:CS_COMPLETION_HANDLER];
     
     if (userInfoDict && [userInfoDict objectForKey:CS_ACTION_TYPE]) {
         
         //check for action
         NSString *actionType = [userInfoDict objectForKey:CS_ACTION_TYPE];
-        id ^completionHandler = [userInfoDict objectForKey:CS_COMPLETION_HANDLER];
         
         if ([actionType isEqualToString:CS_ACTION_CREATE_BULK]){
             
@@ -51,12 +54,12 @@
             
             [self handleDeletionByDomainForDetailsDict:userInfoDict];
         }else{
-            NSError *error = [self prepareErrorWithCode:InvalidActionError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
-            completionHandler(error);
+            NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidActionError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
+            completionBlock(error);
         }
     }else{
         NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidActionError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
-        completionHandler(error);
+        completionBlock(error);
     }
 }
 
@@ -64,6 +67,7 @@
 -(void)handleBulkCreationForDetailsDict:(NSDictionary *)userInfoDict{
     
     id arrayObject = [userInfoDict objectForKey:CS_INDICES_ARRAY];
+    void (^completionBlock)(NSError * __nullable error) = [userInfoDict objectForKey:CS_COMPLETION_HANDLER];
     
     if(arrayObject && [arrayObject isKindOfClass:[NSArray class]]) {
         NSArray *indicesArray = (NSArray *)arrayObject;
@@ -92,20 +96,20 @@
         
         if (validIndicesArray.count>0) {
             //put valid indices into defaultSearchableIndex of the system
-            [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:validIndicesArray completionHandler:completionHandler];
+            [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:validIndicesArray completionHandler:completionBlock];
         }
         
         //report back the error
-        if (invalidIndicesArray.count>0 && completionHandler) {
+        if (invalidIndicesArray.count>0 && completionBlock) {
             
-            NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidIndexDictionaryError andErrorObject:userInfoDict forKey:userInfoDict];
-            completionHandler(error);
+            NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidIndexDictionaryError andErrorObject:userInfoDict forKey:InvalidIndexDictionaryError];
+            completionBlock(error);
         }
         
     }else{
         
-        NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidBulkIndicesArrayError andErrorObject:userInfoDict forKey:userInfoDict];
-        completionHandler(error);
+        NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidBulkIndicesArrayError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
+        completionBlock(error);
     }
     
 }
@@ -113,45 +117,50 @@
 //validate input from notification and create single index, else report error
 -(void)handleSingleIndexCreationForDetailsDict:(NSDictionary *)userInfoDict{
     
+    void (^completionBlock)(NSError * __nullable error) = [userInfoDict objectForKey:CS_COMPLETION_HANDLER];
+    
     CSSearchableItem *indexItem = [self prepareIndexWithTitle:[userInfoDict objectForKey:CS_TITLE] andDescription:[userInfoDict objectForKey:CS_DESC] andUniqueID:[userInfoDict objectForKey:CS_UNIQ_ID_KEY] andDomainID:[userInfoDict objectForKey:CS_DOMAIN_ID_KEY] andThumbnailData:[userInfoDict objectForKey:CS_THUMBNAIL]];
     
     if (indexItem) {
         //create index
-        [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:@[indexItem] completionHandler:completionHandler];
+        [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:@[indexItem] completionHandler:completionBlock];
     }else{
         NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidIndexDictionaryError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
-        completionHandler(error);
+        completionBlock(error);
     }
     
 }
 
 //validate input from notification and delete indices in bulk by unique ids, else report error
--(void)handleDeletionByIdForDetailsDict:(NSString *)userInfoDict{
+-(void)handleDeletionByIdForDetailsDict:(NSDictionary *)userInfoDict{
     NSObject *uniqueId = [userInfoDict objectForKey:CS_UNIQ_ID_KEY];
+    
+    void (^completionBlock)(NSError * __nullable error) = [userInfoDict objectForKey:CS_COMPLETION_HANDLER];
     
     if (uniqueId && [uniqueId isKindOfClass:[NSArray class]]) {
         
-        [self deleteIndicesWithUniqueIdArray:((NSArray *)uniqueId) withCompletionHandler:completionHandler];
+        [self deleteIndicesWithUniqueIdArray:((NSArray *)uniqueId) withCompletionHandler:completionBlock];
         
     }else{
         
         NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidUniqueIdError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
-        completionHandler(error);
+        completionBlock(error);
     }
 }
 
 //validate input from notification and delete indices in bulk by domain ids, else report error
--(void)handleDeletionByDomainForDetailsDict:(NSString *)userInfoDict{
+-(void)handleDeletionByDomainForDetailsDict:(NSDictionary *)userInfoDict{
     
     NSObject *domainId = [userInfoDict objectForKey:CS_DOMAIN_ID_KEY];
     
+    void (^completionBlock)(NSError * __nullable error) = [userInfoDict objectForKey:CS_COMPLETION_HANDLER];
+    
     if (domainId && [domainId isKindOfClass:[NSArray class]]) {
-        [self deleteIndicesWithDomainIdArray:((NSArray *)domainId) withCompletionHandler:completionHandler];
+        [self deleteIndicesWithDomainIdArray:((NSArray *)domainId) withCompletionHandler:completionBlock];
     }else{
         
         NSError *error = [SpotlightErrors prepareErrorWithCode:InvalidDomainIdError andErrorObject:userInfoDict forKey:CS_INVALID_INDICES_ARRAY];
-        completionHandler(error);
+        completionBlock(error);
     }
 }
-
 @end
