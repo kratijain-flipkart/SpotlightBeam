@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SpotlightBeamManager.h"
 
 @interface SpotlightBeamManager(NotificationHandler)
 
